@@ -17,7 +17,7 @@ function renderHome(){
  $('teams').innerHTML=teams.map(t=>`<div class="team"><b>${t.name}</b><div style="margin-top:8px;font-size:18px;color:#172033">Score: <strong>${t.score}</strong></div></div>`).join('');
  $('rounds').innerHTML=data.map((r,i)=>`<button class="roundBtn" style="background:${r.color}" onclick="showNumbers(${i})"><h2>${i+1}. ${r.name}</h2><p>Click round name →</p></button>`).join('');
  renderEditor();
-}
+}  
 function goHome(){clearInterval(timerId);hideAll();$('home').style.display='block';renderHome();scrollTo(0,0)}
 function showNumbers(roundIndex=currentRound){clearInterval(timerId);currentRound=roundIndex;hideAll();$('numbers').style.display='block';$('numberRoundTitle').textContent=`${currentRound+1}. ${data[currentRound].name}`;$('numberGrid').innerHTML=data[currentRound].qs.map((_,i)=>{const used=(usedQuestions[currentRound]||[]).includes(i);return `<button class="numberBtn ${used?'used':''}" onclick="showQuestion(${i})">${i+1}</button>`}).join('');scrollTo(0,0)}
 function showQuestion(qIndex){
